@@ -234,9 +234,13 @@
   /* ================= YOUTUBE driver ================= */
   function initYouTube(trailerId) {
     setSpin(true);
+    // NOTE: YT.Player REPLACES the target div with an iframe (the class is lost),
+    // so the sizing class must live on a wrapper that survives.
+    var wrap = document.createElement("div");
+    wrap.className = "yt-wrap";
     var holder = document.createElement("div");
-    holder.className = "yt-wrap";
-    stage.insertBefore(holder, stage.firstChild);
+    wrap.appendChild(holder);
+    stage.insertBefore(wrap, stage.firstChild);
     function make() {
       ytPlayer = new YT.Player(holder, {
         videoId: trailerId,
