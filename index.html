@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NepMovies — Watch Movies, Dark & Smooth</title>
+<meta name="description" content="NepMovies — a dark, buttery-smooth movie discovery experience. Free forever. No ads.">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <a class="brand" href="#" data-nav="home">
+    <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#e50914"/><path d="M13 10.5v11l9-5.5-9-5.5z" fill="#fff"/></svg>
+    <span>Nep<b>Movies</b></span>
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <button data-nav="home" class="active">Home</button>
+    <button data-nav="search">Search</button>
+    <button data-nav="mylist">My List</button>
+    <button data-nav="myvideos">My Videos</button>
+  </nav>
+  <div class="nav-right">
+    <div class="lang-chips" id="langChips"></div>
+    <button class="icon-btn" id="searchBtn" title="Search" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </button>
+    <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h.01a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51h.01a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v.01a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main class="view on" id="view-home">
+  <section class="hero" id="hero">
+    <div id="heroBgs"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content" id="heroContent"></div>
+    <div class="hero-dots" id="heroDots"></div>
+  </section>
+  <div id="keyBanner"></div>
+  <section class="rows" id="rows"></section>
+</main>
+
+<!-- ================= SEARCH ================= -->
+<main class="view" id="view-search">
+  <div class="view-pad">
+    <h1 class="view-title">Search</h1>
+    <p class="view-sub">Find movies across the catalog.</p>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" placeholder="Movies, genres…" autocomplete="off">
+    </div>
+    <div class="grid" id="searchGrid"></div>
+    <div class="empty" id="searchEmpty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <p>Type something to start searching.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ================= MY LIST ================= -->
+<main class="view" id="view-mylist">
+  <div class="view-pad">
+    <h1 class="view-title">My List</h1>
+    <p class="view-sub">Everything you saved for later.</p>
+    <div class="grid" id="listGrid"></div>
+    <div class="empty" id="listEmpty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+      <p>Your list is empty. Tap <b>+ My List</b> on any movie to save it here.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ================= MY VIDEOS ================= -->
+<main class="view" id="view-myvideos">
+  <div class="view-pad">
+    <h1 class="view-title">My Videos</h1>
+    <p class="view-sub">Your own files, played in the same cinematic player. Paste a direct video link (.mp4) or pick a file from your device.</p>
+    <div class="video-add">
+      <input id="vidTitle" type="text" placeholder="Video title (optional)">
+      <input id="vidUrl" type="url" placeholder="https://…/movie.mp4">
+      <button class="btn btn-accent" id="vidAdd" style="padding:11px 22px;font-size:14px;">Add</button>
+      <button class="btn btn-ghost" id="vidFile" style="padding:11px 22px;font-size:14px;">Pick file</button>
+      <input type="file" id="vidFileInput" accept="video/*" hidden>
+    </div>
+    <div id="vidList"></div>
+    <div class="empty" id="vidEmpty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5L10 9.5z" fill="currentColor" stroke="none"/></svg>
+      <p>No videos yet. Add your first one above.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="fbrand">
+    <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#e50914"/><path d="M13 10.5v11l9-5.5-9-5.5z" fill="#fff"/></svg>
+    NepMovies
+  </div>
+  <span>Movie data & artwork by TMDB · Trailers via YouTube · Free forever, no ads.</span>
+  <span id="footVer">v1</span>
+</footer>
+
+<!-- mobile tab bar -->
+<nav class="tabbar" id="tabbar">
+  <button data-nav="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5L12 3l9 7.5V21a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1z"/></svg>Home</button>
+  <button data-nav="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Search</button>
+  <button data-nav="mylist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>My List</button>
+  <button data-nav="myvideos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5L10 9.5z"/></svg>My Videos</button>
+</nav>
+
+<!-- ================= DETAIL MODAL ================= -->
+<div class="modal-veil" id="detailVeil">
+  <div class="modal" id="detailModal" role="dialog" aria-modal="true"></div>
+</div>
+
+<!-- ================= SETTINGS MODAL ================= -->
+<div class="modal-veil" id="settingsVeil">
+  <div class="modal" style="width:min(560px,100%)">
+    <div class="modal-body" style="margin-top:0;padding-top:30px;">
+      <button class="modal-close" data-close="settingsVeil" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h2 class="view-title" style="font-size:24px;margin-bottom:20px;">Settings</h2>
+      <div class="set-row">
+        <label>TMDB API key <span style="color:var(--faint);font-weight:400;text-transform:none;letter-spacing:0;">(unlocks the full live catalog)</span></label>
+        <input type="text" id="tmdbKey" placeholder="Paste your free TMDB API key" autocomplete="off" spellcheck="false">
+        <ol class="set-steps">
+          <li>Create a free account at <a href="https://www.themoviedb.org/signup" target="_blank" rel="noopener">themoviedb.org/signup</a></li>
+          <li>Open <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">Settings → API</a> and copy your <b>API Key (v3 auth)</b></li>
+          <li>Paste it here and hit Save — the whole catalog goes live instantly</li>
+        </ol>
+        <p class="set-hint">The key stays in this browser only. Without it, NepMovies runs on its built-in curated collection.</p>
+      </div>
+      <div class="set-row">
+        <label>Preferred language</label>
+        <div class="lang-chips" id="setLangChips" style="display:flex;"></div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-accent" id="saveSettings" style="padding:11px 26px;font-size:14px;">Save</button>
+        <button class="btn btn-ghost" data-close="settingsVeil" style="padding:11px 26px;font-size:14px;">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="dot"></span><span id="toastMsg"></span></div>
+
+<script src="js/config.js"></script>
+<script src="js/seed.js"></script>
+<script src="js/store.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
